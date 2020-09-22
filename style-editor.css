@@ -1,0 +1,44 @@
+/** === Custom Block Editor === */
+
+
+/* Main column width */
+.wp-block {
+  width: 80%;
+  max-width: 80%;
+}
+ 
+/* Width of "wide" blocks */
+.wp-block[data-align="wide"] {
+  width: 100%;
+  max-width: 100%;
+}
+ 
+/* Width of "full-wide" blocks */
+.wp-block[data-align="full"] {
+  width: 100%;
+  max-width: 100%;
+}
+
+.bg-dark {
+	position: relative;
+	background: #000;
+	color: #bebebe;
+	z-index: 1;
+}
+.bg-dark:before {
+	content: "";
+	background: #000;
+	position: absolute;
+	left: -30px;
+	right: -30px;
+	top: -30px;
+	bottom: -30px;
+	z-index: -1;
+}
+.bg-dark .input-control {
+	color: #333;
+}
+
+.components-placeholder {
+	min-height: 1px;
+}

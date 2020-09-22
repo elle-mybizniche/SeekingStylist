@@ -1,0 +1,1 @@
+!function(n){var t=function(){},d=function(){n(document).foundation()};document.addEventListener("DOMContentLoaded",t),window.addEventListener("load",d)}(jQuery);

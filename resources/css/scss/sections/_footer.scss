@@ -1,0 +1,10 @@
+.footer{
+
+    @include media(max-width, 1023px){
+
+    }
+
+    @include media(max-width, 639px){
+        
+    }
+}

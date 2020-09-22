@@ -1,0 +1,71 @@
+*{
+    outline: none;
+}
+
+body{
+    font-family: $font-family-primary;
+    font-size: $body-font-size;
+    color: $mycolor-gray-dark;
+    overflow-x: hidden;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: bold;
+    font-family: $font-family-secondary;
+    margin-bottom: 20.7px;  
+}
+
+h1{
+    text-align: center;
+    font-size: 63px;
+    em{
+        font-style: normal;
+        color: $mycolor-violet;
+    }
+}
+
+h2{
+    font-size: 32px;
+    letter-spacing: 8.51px;
+}
+
+a{
+    color: $color-secondary;
+    transition: 0.3s ease all;
+
+    &:hover,
+    &:focus{
+        color: lighten($color-secondary, 20%);
+    }
+}
+
+p{
+    font-family: $font-family-primary;
+    color: $mycolor-gray;
+    margin-bottom: 20.7px; 
+
+    strong{
+        color: $mycolor-black;
+    }
+}
+
+
+
+@include media(max-width, 1023px){
+    body{
+        font-size: $body-font-size * 0.9;
+    }
+}
+
+
+@include media(max-width, 639px){
+    body{
+        font-size: $body-font-size * 0.8;
+    }
+}

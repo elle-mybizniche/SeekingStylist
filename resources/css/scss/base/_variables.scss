@@ -1,0 +1,59 @@
+$color-primary: #0190b4;
+$color-secondary: #47b6e3;
+$color-success: #3adb76;
+$color-alert: #cc4b37;
+$color-warning: #cc8b00;
+$color-dark: #333;
+
+$color-white: #fff;
+$color-black: #000;
+$color-grey: #575757;
+$color-light-grey: #eaeaea;
+$color-light-blue: #83c8d7;
+
+
+$font-family-primary: 'Fira Sans', sans-serif;
+$font-family-secondary: 'Cormorant Garamond', serif;
+$font-family-muli: 'Muli', serif;
+$font-family-proxima: 'Proxima Nova Rg', serif;
+
+$body-font-size : 19px;
+
+$mycolor-pink: #d0668f;
+$mycolor-pink-light: #ffafce;
+$mycolor-pink-lighter: #f4efef;
+$mycolor-violet: #862d4f;
+$mycolor-black: #231f20;
+$mycolor-gray: #707070;
+$mycolor-gray-dark: #505050;
+$mycolor-gray-light: #f8f8f8;
+$mycolor-yellow: #ffc107;
+
+$button-font-family: 'Roboto', sans-serif;
+
+$border-color-pink: #f4dbe8;
+
+
+/* FOUNDATION VARIABLES */
+$grid-container: 1440px;
+
+$foundation-palette: (
+  primary: $color-primary,
+  secondary: $color-secondary,
+  success: $color-success,
+  warning: $color-warning,
+  alert: $color-alert,
+) !default;
+
+$button-background: $color-primary;
+$button-radius: 3px;
+$button-sizes: (
+    tiny: 0.6rem,
+    small: 0.75rem,
+    defaut: 16px, // default: 0.9rem,
+    large: 1.25rem
+) !default;
+$button-padding: 15.4px 27px;
+$button-font-weight: 500 !default;
+
+$input-shadow: none;
