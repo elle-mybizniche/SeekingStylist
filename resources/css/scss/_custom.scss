@@ -330,14 +330,20 @@ header{
 					margin-top: 50px;
 					color: $mycolor-black;
 
+
+
 					@include media(max-width, 767px){
 						& > span{
 							display: block;
 						}
 					}
 
-					a:first-child{
+					a:first-of-type{
 						margin-left: 25px;
+
+						@include media(max-width, 767px){
+							margin-left: 0;
+						}
 					}
 
 					a{
@@ -579,7 +585,7 @@ main{
 		@include media(max-width, 575px){
 			.wp-block-columns.column-2{
 				overflow: initial;
-				
+
 		    	.wp-block-column .wp-block-buttons{
 					position: absolute;
 				    bottom: 0;
