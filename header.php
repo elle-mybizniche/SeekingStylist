@@ -18,8 +18,10 @@
         
         <header id="header" class="header">
             <div class="top-mobile-menu">
-                <a href="#"><img src="<?= get_template_directory_uri(); ?>/resources/img/hair-street-logo.png" alt="<?php echo get_bloginfo(); ?>"  title="<?php echo get_bloginfo(); ?>"></a>
-                <a href="javascript:;" class="hamburger-menu"><span>menu</span></a>
+                <a href="#">
+                    <img class="top-logo" src="<?= get_template_directory_uri(); ?>/resources/img/hair-street-logo.png" alt="<?php echo get_bloginfo(); ?>"  title="<?php echo get_bloginfo(); ?>">
+                </a>
+                <a href="#main-menu-control" class="hamburger-menu"><span>menu</span></a>
             </div>
             <?php if (is_front_page()): ?>
                 <?php 
@@ -49,7 +51,7 @@
                                     </div>
                                 </form>
                                 <div class="info">
-                                    <p>Are You A Stylist? <a href="/sign-up"><span>Register Now</span></a><a href="/stylist-login"><span>Login</span></a></p>
+                                    <p><span>Are You A Stylist?</span> <a href="/sign-up"><span>Register Now</span></a><a href="/stylist-login"><span>Login</span></a></p>
                                 </div>
                             </div>
                         </div>
@@ -65,18 +67,21 @@
                     </a>
                 </div>
                 <nav>
-                    <?php
-                        wp_nav_menu(
-                            array(
-                                 'container'=> false,
-                                'theme_location' => 'main-menu',
-                                'menu_id'        => 'main-menu',
-                            )
-                        );
-                    ?>
-                    <a href="javascript:;" class="hamburger-menu"><span>menu</span></a>
+                    <div id="main-menu-control">
+                        <?php
+                            wp_nav_menu(
+                                array(
+                                    'container'=> false,
+                                    'theme_location' => 'main-menu',
+                                    'menu_id'        => 'main-menu',
+                                )
+                            );
+                        ?>
+                    </div>
+                    
+                    <a href="#main-menu-control" class="hamburger-menu"><span>menu</span></a>
                 </nav>
             </div>
         </header>
 
-    </div>
+    

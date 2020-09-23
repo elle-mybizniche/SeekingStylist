@@ -11,7 +11,7 @@
 			    while ($query->have_posts()) : $query->the_post();
 			?>
 
-				<div class="cell medium-4">
+				<div class="cell">
 					<article>
 						<div class="thumb">
 							<a href="<?= get_the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>

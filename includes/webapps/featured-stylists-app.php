@@ -70,8 +70,16 @@
 <script>
 
 	function getSuperActive($target){
+		var activeChild = 2;
+
+		if (window.innerWidth < 1200 && window.innerWidth > 767) {
+			activeChild = 1;
+		}
+		if (window.innerWidth < 767) {
+			activeChild = 0
+		}
 		$target.find('.slick-super-active').removeClass('slick-super-active');
-		$target.find('.slick-active:eq(2)').addClass('slick-super-active');
+		$target.find('.slick-active:eq('+activeChild+')').addClass('slick-super-active');
 	}
 	$(function(){
 		var $sl = $('.stylists-lists');
@@ -97,7 +105,7 @@
 			      }
 			    },
 			    {
-			      breakpoint: 757,
+			      breakpoint: 767,
 			      settings: {
 			        slidesToShow: 1
 			      }

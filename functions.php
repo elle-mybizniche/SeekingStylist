@@ -85,8 +85,11 @@ function mbn_enqueue_scripts(){
     wp_enqueue_script('foundation', MBN_ASSETS_URI.'/vendor/foundation/dist/js/foundation.min.js', [], $wp_version);
 
     // Mmenu Light
-    wp_enqueue_style('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.css', [], $wp_version);
-    wp_enqueue_script('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.js', [], $wp_version);
+    // wp_enqueue_style('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.css', [], $wp_version);
+    // wp_enqueue_script('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.js', [], $wp_version);
+
+    wp_enqueue_style('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.css', [], $wp_version);
+    wp_enqueue_script('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.js', [], $wp_version);
 
     // slick
     wp_enqueue_style('slick', MBN_ASSETS_URI.'/vendor/slick/slick.css', [], $wp_version);
@@ -116,6 +119,11 @@ function mbn_enqueue_scripts(){
     // App
     wp_enqueue_style('app', MBN_ASSETS_URI.'/css/app.css', [], $wp_version);
     wp_enqueue_script('app', MBN_ASSETS_URI.'/js/app.js', [], $wp_version);
+
+    wp_register_script( 'app', 'global_script' );
+    wp_enqueue_script( 'app' );
+    $translation_array = array( 'templateUrl' => get_stylesheet_directory_uri() );
+    wp_localize_script( 'app', 'global_obj', $translation_array );
     
 
     // localize objects
@@ -198,4 +206,6 @@ require MBN_DIR_PATH . '/mbn-login/setup.php';
 // require MBN_DIR_PATH.'/includes/site-optimization.php';
 //require MBN_DIR_PATH.'/includes/options/theme-options.php';
 // require MBN_DIR_PATH.'/includes/options/template-options.php';
+
+
 
