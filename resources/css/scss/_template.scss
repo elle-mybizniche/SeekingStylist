@@ -1,0 +1,40 @@
+.page-template-template-find-stylists{
+	#page{
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+
+		@include media(max-width, 997px){
+			height: auto;
+		}
+	}
+
+
+	header .main-menu{
+		height: 100%;
+    	padding: 10px 0px;
+	}
+
+
+	@include media(max-width, 997px){
+		header .main-menu{
+	    	padding: 25px 0;
+		}
+	}
+
+	@include media(max-width, 997px){
+
+		.search-nav .group-fields{
+			input{
+				font-size: 14px;
+    			padding: 28px 40px;
+			}
+			button{
+				margin-top: 10px;
+			    padding: 18px 0;
+			    letter-spacing: 2.4px;
+			}
+		}
+		
+	}
+}
