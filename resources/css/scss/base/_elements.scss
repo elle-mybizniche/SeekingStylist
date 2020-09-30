@@ -24,6 +24,7 @@ h1, h2, h3, h4, h5, h6{
 h1{
     text-align: center;
     font-size: 63px;
+    color: $mycolor-black;
     em{
         font-style: normal;
         color: $mycolor-violet;
@@ -33,16 +34,21 @@ h1{
 h2{
     font-size: 32px;
     letter-spacing: 8.51px;
+     color: $mycolor-black;
 }
 
 a{
-    color: $color-secondary;
+    color: $mycolor-violet;
     transition: 0.3s ease all;
 
     &:hover,
     &:focus{
-        color: lighten($color-secondary, 20%);
+        color: lighten($mycolor-violet, 20%);
     }
+}
+
+a[href*="tel:"]{
+    color: $mycolor-black;
 }
 
 p{
@@ -53,6 +59,9 @@ p{
     strong{
         color: $mycolor-black;
     }
+}
+ul{
+    line-height: 1.8;
 }
 
 

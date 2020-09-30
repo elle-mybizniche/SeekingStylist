@@ -1,22 +1,8 @@
 
         
         <!-- FOOTER -->
-        <footer id="footer" class="footer">
+        <footer id="footer" class="footer footer-simple">
         	<div class="grid-container">
-        		<div class="text-center">
-        			<a href="/" class="footer-logo">
-	        			<img src="<?= get_template_directory_uri(); ?>/resources/img/footer-logo-white.png" alt="hairstreet" title="hairstreet">
-	        		</a>
-
-	        		<ul class="menu-larger">
-	        			<li><a href="#">FAQS</a></li>
-	        			<li><a href="#">CONTACT US</a></li>
-	        		</ul>
-	        		<ul class="menu-small">
-	        			<li><a href="#">Stylist Login</a></li>
-	        			<li><a href="#">Sign Up</a></li>
-	        		</ul>
-        		</div>
 
         		<div class="info">
         			<div class="copyright">

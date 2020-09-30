@@ -1,5 +1,7 @@
-<?php get_header() ?>
-<main class="child-page">
+<?php 
+/* Template Name: Contact Us Page */
+get_header() ?>
+<main class="child-page contact-us">
 	<div class="grid-container">
 		<?php if(have_posts()): ?>
 		    <?php while(have_posts()): the_post() ?>
@@ -9,4 +11,4 @@
 	</div>
 </main>
 
-<?php get_footer() ?>
+<?php get_footer('simple') ?>
