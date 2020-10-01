@@ -1703,8 +1703,11 @@ main{
 
 
 .wp-block-group.footer-note{
-	padding-top: 0;
 	text-align: center;
+
+	@include media(max-width, 575px){
+		padding-top: 0 !important;
+	}
 	h2{
 		font-size: 63px;
 		font-weight: bold;
