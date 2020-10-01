@@ -8,11 +8,20 @@
 			<div class="d-flex align-items-center flex-wrap category-filter">
 				<span>Categories: </span>
 				<div class="custom-select">
-					<select name="" id="">
-						<option value="">Category 1</option>
-						<option value="">Category 2</option>
-						<option value="">Category 3</option>
-						<option value="">Category 4</option>
+					<select name="blog-category" id="blog-category">
+						<?php 
+							$cc = get_queried_object();
+							$blogCategory = get_categories(['hide_empty' => false]); 
+						?>
+						<option value="*" data-category="<?= get_site_url(); ?>/articles">All</option>
+						<?php foreach ($blogCategory as $category): ?>
+							<?php if (is_category()): ?>
+								<option <?= $cc->term_id == $category->term_id ? 'selected' : ''; ?> value="<?= $category->name ?>" data-category="<?= get_term_link( $category->term_id ); ?>"><?= $category->name ?></option>
+							<?php else: ?>
+								<option value="<?= $category->name ?>" data-category="<?= get_term_link( $category->term_id ); ?>"><?= $category->name ?></option>
+							<?php endif ?>
+							
+						<?php endforeach ?>
 					</select>
 				</div>
 			</div>
@@ -43,6 +52,22 @@
 		    
 		<?php endif ?>
 	</div>
+	
 </main>
+
+
+<script>
+	$(function(){
+
+		$('#blog-category').change(function(){
+			var getURL = $(this).find('option:selected').data('category');
+
+			location = getURL;
+		});
+
+		
+
+	})
+</script>
 
 <?php get_footer() ?>
