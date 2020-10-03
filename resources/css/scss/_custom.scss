@@ -68,6 +68,7 @@ $border-radius: 10px;
 		font-weight: bold;
 		min-width: 240px;
 		text-align: center;
+		border: 0;
 
 		@include media(max-width, 575px){
 			min-width: auto;
