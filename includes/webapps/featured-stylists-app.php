@@ -19,7 +19,7 @@
 				</div>
 				<div class="profile-info">
 					<h3><?php the_title(); ?></h3>
-					<p><?php the_field('osf_location') ?></p>
+					<p><?php the_field('osf_location_city') ?>, <?php the_field('osf_location_state') ?></p>
 					<div class="ratings-review">
 						<ul class="rate rate-<?= get_field('osf_rate') ?>">
 							<?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -33,7 +33,7 @@
 						<a href="#">345 reviews</a>
 					</div>
 					<div class="skills">
-						<?= get_field('osf_skills') ?>
+						<span><?= implode(", ", get_field('osf_skills')) ?></span>
 					</div>
 				</div>
 			</div>

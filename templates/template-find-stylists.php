@@ -9,10 +9,10 @@ get_header();
 			<div class="d-flex flex-wrap align-items-center">
 				<h1>FIND A STYLIST</h1>
 				<div class="flex-child-grow">
-					<form action="">
+					<form action="#" id="searchStylist">
 		                <div class="group-fields">
-		                    <input type="text" placeholder="Search by Location or by Stylist’s Name">
-		                    <button type="submit" class="btn btn-black">search</button>
+		                    <input type="text" name="query" placeholder="Search by Location or by Stylist’s Name">
+		                    <button type="submit" class="btn btn-black text-uppercase">search</button>
 		                </div>
 		            </form>
 				</div>
@@ -21,7 +21,7 @@ get_header();
 		<div class="cell large-5 medium-12">
 			<ul class="d-flex justify-content-lg-end justify-content-center filter-nav">
 				<li>
-					<a href="#" class="d-flex flex-wrap align-items-center">
+					<a href="javascript:;" id="btn-current-location" class="d-flex flex-wrap align-items-center">
 						<svg xmlns="http://www.w3.org/2000/svg" id="current_location" width="32.973" height="32.973" fill="#fff"><path id="Path_56" d="M156.7 149.988a6.295 6.295 0 104.466 1.844 6.295 6.295 0 00-4.466-1.844zm3.5 9.812a4.974 4.974 0 111.446-3.507 4.924 4.924 0 01-1.446 3.507zm0 0" class="cls-1" transform="translate(-140.21 -139.812)"/><path id="Path_57" d="M32.294 15.808h-1.9A13.9 13.9 0 0017.165 2.582V.678a.678.678 0 10-1.357 0v1.9a13.9 13.9 0 00-13.226 13.23H.678a.678.678 0 100 1.357h1.9a13.9 13.9 0 0013.23 13.226v1.9a.678.678 0 101.357 0v-1.9a13.9 13.9 0 0013.226-13.226h1.9a.678.678 0 100-1.357zm-6.919 9.567a12.47 12.47 0 01-8.21 3.656V26.11a.678.678 0 00-1.357 0v2.921A12.543 12.543 0 013.941 17.165h2.922a.678.678 0 100-1.357H3.941A12.543 12.543 0 0115.808 3.941v2.922a.678.678 0 001.357 0V3.941a12.543 12.543 0 0111.867 11.867H26.11a.678.678 0 000 1.357h2.921a12.47 12.47 0 01-3.656 8.21zm0 0" class="cls-1"/></svg>
 						<span class="pl-2">Current Location</span>
 					</a>
@@ -70,7 +70,7 @@ get_header();
 						<div class="profile-info">
 							<div class="d-flex flex-wrap justify-content-between align-items-center">
 								<h3 class="mb-0"><?php the_title(); ?></h3>
-								<p class="mb-0"><?php the_field('osf_location') ?></p>
+								<p><?php the_field('osf_location_city') ?>, <?php the_field('osf_location_state') ?></p>
 							</div>
 							<div class="ratings-review flex-wrap">
 								<ul class="rate rate-<?= get_field('osf_rate') ?>">
@@ -88,7 +88,7 @@ get_header();
 					</div>
 					<div class="control-skills">
 						<div class="skills">
-							<span><?= get_field('osf_skills') ?></span>
+							<span><?= implode(", ", get_field('osf_skills')) ?></span>
 						</div>
 					</div>
 				</div>
@@ -99,52 +99,88 @@ get_header();
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDac2mOtJr_IktjUhiLZYRL_xHzxRbodRE&v=3.11&sensor=false" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
-    // check DOM Ready
+
+	var googleMap;
+	var geocoder = new google.maps.Geocoder();
+	var fn = {
+
+		searchStylistInit : function($query){
+
+		},
+
+		initGoogleMapMarker : function($address, $idx){
+
+			geocoder.geocode( { 'address': $address,  }, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					console.log($address + ' ===== ' + results[0].geometry.location.lat() + ' ' +results[0].geometry.location.lng())
+					var marker = new google.maps.Marker({
+	                    position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()),
+	                    map: googleMap,
+	                    title: 'Click Me ' + $address
+	                });
+
+
+	                (function (marker, idx) {
+	                    google.maps.event.addListener(marker, 'click', function () {
+	                        infowindow = new google.maps.InfoWindow({
+	                            content: 'Hello, World!!'
+	                        });
+	                        infowindow.open(googleMap, marker);
+	                    });
+	                })(marker, $idx);
+			    } 
+			}); 
+		}
+	}
+
     $(document).ready(function () {
-        // execute
         (function () {
-            // map options
             var options = {
-                zoom: 12,
-                center: new google.maps.LatLng(-33.92, 151.25), // centered US
+                zoom: 17,
+                center: new google.maps.LatLng(30.2746698,-97.7425392),
                 mapTypeId: google.maps.MapTypeId.TERRAIN,
                 mapTypeControl: false
             };
 
+            googleMap = new google.maps.Map(document.getElementById('map_canvas'), options);
+
+            axios.get('/mbn-seeking-stylists/wp-json/acf/v3/stylist-app')
+			  	.then(function (response) {
+			    	var data = response.data;
 
 
-            // init map
-            var map = new google.maps.Map(document.getElementById('map_canvas'), options);
-
-            // locations
-            var locations = [
-                ['Bondi Beach', -33.890542, 151.274856, 4],
-                ['Coogee Beach', -33.923036, 151.259052, 5],
-                ['Cronulla Beach', -34.028249, 151.157507, 3],
-                ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-                ['Maroubra Beach', -33.950198, 151.259302, 1]
-            ];
+			    	data.forEach(function(itm, idx){
+			    		var d = itm;
+			    		var acf = d.acf;
+			    		var loc = acf.osf_location.address + ' ' + acf.osf_location.city + ' ' + acf.osf_location.state+ ' ' + acf.osf_location.zip;
 
 
-            locations.forEach(function (itm, idx) {
-                console.log(itm[1] + ' ' + itm[2]);
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(itm[1], itm[2]),
-                    map: map,
-                    title: 'Click Me ' + itm[0]
-                });
+			    		fn.initGoogleMapMarker(loc, idx);
 
-                (function (marker, idx) {
-                    // add click event
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow = new google.maps.InfoWindow({
-                            content: 'Hello, World!!'
-                        });
-                        infowindow.open(map, marker);
-                    });
-                })(marker, idx);
+			    	});
+			  	})
+			  	.catch(function (error) { console.log(error) })
+			  	.then(function () { });
+
+            
+
+
+            $('#btn-current-location').click(function(){
+            	navigator.geolocation.getCurrentPosition(function(position) {
+				  	var position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				    googleMap.setCenter(position);
+				});
+            });
+
+
+            $('#searchStylist').submit(function(e){
+            	e.preventDefault();
+            	var $getQuery = $(this).find('input').val();
+            	
+            	searchStylistInit($getQuery);
             });
 
         })();
