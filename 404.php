@@ -1,19 +1,11 @@
 <?php get_header() ?>
 
-<section id="sec-404" class="sec-404 section">
-    <div class="grid-container">
-        <div class="grid-x grid-margin-x">
-            <div class="cell large-12">
-                <div class="text-block">
-                    <h1>Page Not Found.</h1>
-
-                    <p>The page you requested cannot be found.</p>
-
-                    <p><a href="<?php echo home_url() ?>">Go back to Homepage</a></p>
-                </div>
-            </div>
-        </div>
+<main class="child-page">
+    <div class="grid-container text-center py-5 my-5">
+        <h1>Page Not Found.</h1>
+        <p>The page you requested cannot be found.</p>
+        <a href="/" class="btn btn-violet">go back to homepage</a>
     </div>
-</section>
+</main>
 
 <?php get_footer() ?>

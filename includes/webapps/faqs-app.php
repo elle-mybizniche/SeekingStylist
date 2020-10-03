@@ -8,9 +8,9 @@
 		    ));
 		 ?>
 		<div class="grid-x grid-margin-x">
-			<div class="cell medium-4 control-sidebar">
+			<div class="cell medium-4 control-sidebar position-relative">
 				<div data-sticky-container>
-					<nav class="sidebar-menu sticky" data-sticky data-anchor="faqLists"  data-margin-top="1" data-sticky-on="medium">
+					<nav class="sidebar-menu sticky" data-sticky data-anchor="faqLists"  data-margin-top="5" data-sticky-on="medium">
 						<ul data-magellan>
 							<?php while ($query->have_posts()) : $query->the_post(); ?>
 								<li><a  href="#faq-<?= get_the_ID(); ?>" ><?php the_title(); ?></a></li>
