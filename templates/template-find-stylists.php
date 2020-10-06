@@ -2,16 +2,15 @@
 /* Template Name: Find a Stylists */
 get_header(); 
 ?>
-<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <div class="search-nav">
 	<div class="grid-x grid-margin-x align-items-center">
 		<div class="cell large-7 medium-12">
 			<div class="d-flex flex-wrap align-items-center">
 				<h1>FIND A STYLIST</h1>
 				<div class="flex-child-grow">
-					<form action="#" id="searchStylist">
+					<form action="<?= get_site_url(); ?>/find-a-stylists/" id="searchStylist">
 		                <div class="group-fields">
-		                    <input type="text" name="query" placeholder="Search by Location or by Stylist’s Name">
+		                    <input type="text" name="search" id="search" value="<?= isset($_GET['search'] ) ? $_GET['search'] : '' ?>" placeholder="Search by Location or by Stylist’s Name">
 		                    <button type="submit" class="btn btn-black text-uppercase">search</button>
 		                </div>
 		            </form>
@@ -37,30 +36,44 @@ get_header();
 	</div>
 	
 </div>
+
+<?php 
+	$meta_query = [];
+	if (isset($_GET['search'])) {
+		$meta_query = $_GET['search'];
+	}
+
+	$query = new WP_Query( array(
+	    'post_type' 	=> 'stylist-app',
+	    'post_status'	 => 'publish',
+	    'posts_per_page' => -1,
+	    'orderby' 		=> 'name',
+	    'order' 		=> 'ASC',
+	    's'	=> $meta_query
+	));
+
+ ?>
 <main class="find-style-content">
 	<div class="search-stage">
 		<div class="google-map-viewer">
 			<div id="map_canvas"></div>
 			<div class="number-of-results d-flex align-items-center">
 				<svg xmlns="http://www.w3.org/2000/svg" width="18.307" height="26.334" fill="#000"><path d="M9.15 0A9.164 9.164 0 000 9.154c0 6.344 9.163 17.18 9.163 17.18s9.145-11.149 9.145-17.18A9.164 9.164 0 009.15 0zm2.765 11.834a3.906 3.906 0 110-5.523 3.894 3.894 0 010 5.523zm0 0"/></svg>
-				<span>159 Stylist Found</span>
+				<span> <?= $query->found_posts; ?> Stylist Found</span>
 			</div>
 		</div>
 		<div class="stylist-card">
 			<?php 
-			    $query = new WP_Query( array(
-			        'post_type' => 'stylist-app',
-			        'post_status' => 'publish',
-			        'posts_per_page' => -1,
-			        'orderby' => 'name',
-			        'order' => 'ASC',
-			    ));
+			    
 			    while ($query->have_posts()) : $query->the_post();
 			?>
 				<div class="stylist-item">
+					<div class="d-none control-address">
+						<?= implode(" ", get_field('osf_location')); ?>
+					</div>
 					<div class="control-thumb">
 						<div class="profile-thumb">
-							<a href="#">
+							<a href="<?= get_the_permalink(); ?>">
 								<?php the_post_thumbnail(); ?>
 							</a>
 						</div>
@@ -69,12 +82,13 @@ get_header();
 					<div class="control-profile">
 						<div class="profile-info">
 							<div class="d-flex flex-wrap justify-content-between align-items-center">
-								<h3 class="mb-0"><?php the_title(); ?></h3>
+								<h3 class="mb-0">
+									<a href="<?= get_the_permalink(); ?>"><?php the_title(); ?></a>
+								</h3>
 								<p><?php the_field('osf_location_city') ?>, <?php the_field('osf_location_state') ?></p>
 							</div>
 							<div class="ratings-review flex-wrap">
 								<ul class="rate rate-<?= get_field('osf_rate') ?>">
-
 									<?php for ($i = 1; $i <= 5; $i++) : ?>
 										<?php $controlRate = (int) get_field('osf_rate'); ?>
 										<li class="<?= $i <= $controlRate ? 'selected' : ''; ?>">
@@ -115,7 +129,7 @@ get_header();
 
 			geocoder.geocode( { 'address': $address,  }, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
-					console.log($address + ' ===== ' + results[0].geometry.location.lat() + ' ' +results[0].geometry.location.lng())
+
 					var marker = new google.maps.Marker({
 	                    position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()),
 	                    map: googleMap,
@@ -133,6 +147,15 @@ get_header();
 	                })(marker, $idx);
 			    } 
 			}); 
+		},
+
+		initGoogleMapCenter : function($address){
+			geocoder.geocode( { 'address': $address,  }, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var position = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+				    googleMap.setCenter(position);
+				}
+			});
 		}
 	}
 
@@ -147,23 +170,18 @@ get_header();
 
             googleMap = new google.maps.Map(document.getElementById('map_canvas'), options);
 
-            axios.get('/mbn-seeking-stylists/wp-json/acf/v3/stylist-app')
-			  	.then(function (response) {
-			    	var data = response.data;
 
+            $('.stylist-card .stylist-item').each(function(idx, itm){
 
-			    	data.forEach(function(itm, idx){
-			    		var d = itm;
-			    		var acf = d.acf;
-			    		var loc = acf.osf_location.address + ' ' + acf.osf_location.city + ' ' + acf.osf_location.state+ ' ' + acf.osf_location.zip;
+            	var address = $(this).find('.control-address').text().trim();
 
+            	if (idx == 0) {
+            		fn.initGoogleMapCenter(address);
+            	}
 
-			    		fn.initGoogleMapMarker(loc, idx);
+            	fn.initGoogleMapMarker(address, idx);
 
-			    	});
-			  	})
-			  	.catch(function (error) { console.log(error) })
-			  	.then(function () { });
+            });
 
             
 
@@ -176,12 +194,11 @@ get_header();
             });
 
 
-            $('#searchStylist').submit(function(e){
-            	e.preventDefault();
-            	var $getQuery = $(this).find('input').val();
-            	
-            	searchStylistInit($getQuery);
-            });
+
+
+
+
+
 
         })();
     });

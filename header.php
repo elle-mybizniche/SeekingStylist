@@ -43,9 +43,9 @@
                                 
                                 <h2><?= get_field('hbf_banner_heading_main') ?></h2>
                                 <p><?= get_field('hbf_banner_heading_sub_heading') ?></p>
-                                <form action="">
+                                <form action="<?= get_site_url(); ?>/find-a-stylists/">
                                     <div class="group-fields">
-                                        <input type="text" placeholder="Search by Location or by Stylist’s Name">
+                                        <input type="text" name="search" id="search" placeholder="Search by Location or by Stylist’s Name">
                                         <button type="submit" class="btn btn-black">search</button>
                                     </div>
                                 </form>

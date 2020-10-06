@@ -15,7 +15,6 @@ function home_page_banner_app() {
             'menu_position' => 21,
             'supports'      =>  array('title'),
             'menu_icon'     => 'dashicons-admin-tools',
-            'rewrite'  => array('slug' => 'home-banner-app'),
         )
     );
 }
@@ -44,6 +43,10 @@ function home_gallery_app_func() {
 add_action( 'init', 'home_gallery_app_func' );
 
 
+
+
+
+
 function stylist_app_function() {
     register_post_type( 
         'stylist-app',
@@ -56,14 +59,20 @@ function stylist_app_function() {
             'publicly_queryable' => true,
             'has_archive'   => false,
             'show_in_rest'  => true,
+            'query_var'          => true,
             'menu_position' => 21,
             'supports'      =>  array('title', 'editor', 'thumbnail', 'comments'),
             'menu_icon'     => 'dashicons-admin-tools',
-            'rewrite'           => array('slug' => 'stylist'),
+            'rewrite'       => array('slug' => 'stylist'),
         )
     );
 }
 add_action( 'init', 'stylist_app_function' );
+
+
+
+
+
 
 function faq_app_function() {
     register_post_type( 
@@ -79,8 +88,7 @@ function faq_app_function() {
             'show_in_rest'  => true,
             'menu_position' => 21,
             'supports'      =>  array('title', 'editor'),
-            'menu_icon'     => 'dashicons-admin-tools',
-            'rewrite'           => array('slug' => 'stylist'),
+            'menu_icon'     => 'dashicons-admin-tools'
         )
     );
 }

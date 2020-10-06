@@ -7,7 +7,14 @@
 		@include media(max-width, 997px){
 			height: auto;
 		}
+
+
+		#header{
+			flex-shrink: 0;
+		}
 	}
+
+	
 
 
 	header .main-menu{
