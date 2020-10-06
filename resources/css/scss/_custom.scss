@@ -2013,7 +2013,7 @@ footer{
 	.form-button{
 		margin-top: 50px;
 
-		@include media(max-width, 997px){
+		@include media(max-width, 767px){
 			margin: 50px calc(-50vw + 50%) 0;
 			.btn{
 				border-radius: 0;

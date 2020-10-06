@@ -4,6 +4,8 @@
 
 (function($){
 
+    $(document).foundation();
+
     var app = {
         onReady: function(){
 
@@ -19,7 +21,12 @@
             
         },
         onLoad: function(){
-			$(document).foundation();
+			
+
+
+            if ($('#faqLists')[0]) {
+                Foundation.reInit($('[data-magellan]'));
+            }
 		},
 		utils: function(){
 		},
