@@ -133,7 +133,8 @@ get_header();
 					var marker = new google.maps.Marker({
 	                    position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()),
 	                    map: googleMap,
-	                    title: 'Click Me ' + $address
+	                    title: $address,
+	                    icon : '<?= get_template_directory_uri(); ?>/resources/img/gmark.png'
 	                });
 
 
@@ -165,7 +166,9 @@ get_header();
                 zoom: 17,
                 center: new google.maps.LatLng(30.2746698,-97.7425392),
                 mapTypeId: google.maps.MapTypeId.TERRAIN,
-                mapTypeControl: false
+                mapTypeControl: false,
+                draggarble: false,
+
             };
 
             googleMap = new google.maps.Map(document.getElementById('map_canvas'), options);
