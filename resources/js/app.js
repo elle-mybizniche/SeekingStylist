@@ -86,17 +86,20 @@ var gn = {
 
 
     menuFixedOnScroll : function(){
-        var el = $('header .main-menu')[0];
-        getdistance = window.pageYOffset + el.getBoundingClientRect().top;
+        var el = $('header .main-menu');
+        if (el[0]) {
+            getdistance = window.pageYOffset + el[0].getBoundingClientRect().top;
 
-        $(window).scroll(function(){
-            if ($(window).scrollTop() >= getdistance) {
-                $('header .main-menu').addClass('fixed-header');
-            }
-            else {
-                $('header .main-menu').removeClass('fixed-header');
-            }
-        });
+            $(window).scroll(function(){
+                if ($(window).scrollTop() >= getdistance) {
+                   el.addClass('fixed-header');
+                }
+                else {
+                   el.removeClass('fixed-header');
+                }
+            });
+        }
+        
     },
 
 

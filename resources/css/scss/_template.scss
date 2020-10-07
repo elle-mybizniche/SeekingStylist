@@ -45,3 +45,87 @@
 		
 	}
 }
+
+
+
+.sign-template{
+	background-image: url(../img/banner-img.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 100vh;
+	position: relative;
+
+	&:before{
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: rgba(51, 51, 51, 0.6);
+		z-index: 10;
+	}
+
+	.form-box{
+		background-color: $color-white;
+		max-width: 990px;
+		margin: 0 auto;
+		padding: 60px;
+		text-align: center;
+		position: relative;
+		z-index: 20;
+	}
+
+	p{
+		font-size: 19px;
+	}
+	.child-page h1{
+		margin-bottom: 20px;
+	}
+
+	main{
+		padding: 50px 0;
+	}
+
+	.text-upper{
+		font-family: $font-family-primary;
+		font-size: 28px;
+		a{
+			font-weight: bold;
+		}
+	}
+
+
+	@include media(max-width, 767px){
+		main{
+			margin-top: 0;
+			padding: 0;
+
+			.grid-container{
+				padding: 0;
+			}
+		}
+
+		.form-box{
+			padding: 60px 30px;
+			.form-item button.btn{
+				margin: 35px calc(-50vw + 50%) 0;
+				border-radius: 0;
+			}
+		}
+		.btn.btn-icon{
+			padding: 15px;
+			span{
+				font-size: 20px;
+			}
+		}
+
+		.text-upper{
+			font-size: 20px;
+		}
+		.text-lower{
+			font-size: 12px;
+		}
+	}
+}
+

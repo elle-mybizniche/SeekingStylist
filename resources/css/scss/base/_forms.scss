@@ -50,3 +50,35 @@
 	   }
 	}
 }
+
+
+.sign-template{
+	::-webkit-input-placeholder {
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+	::-moz-placeholder {
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+	:-ms-input-placeholder {
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+	:-moz-placeholder { 
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+}
