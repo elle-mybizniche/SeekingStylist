@@ -4,7 +4,7 @@
 
 (function($){
 
-    $(document).foundation();
+    
 
     var app = {
         onReady: function(){
@@ -19,14 +19,10 @@
 
             gn.customSelect();
             
+            $(document).foundation();
         },
         onLoad: function(){
-			
 
-
-            if ($('#faqLists')[0]) {
-                Foundation.reInit($('[data-magellan]'));
-            }
 		},
 		utils: function(){
 		},

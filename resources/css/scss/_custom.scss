@@ -1388,6 +1388,10 @@ main{
 							&:hover{
 								color: $mycolor-violet;
 							}
+
+							&.is-active{
+								color: $mycolor-violet;
+							}
 						}
 
 						& + li{
@@ -1399,11 +1403,15 @@ main{
 				}
 			}
 
+			.control-sidebar{
+				padding-top: 50px;
+			}
+
 			.faq-item{
 				padding: 70px 0 50px;
 
 				&:first-child{
-					padding-top: 0;
+					padding-top: 50px;
 				}
 
 				& + .faq-item{
