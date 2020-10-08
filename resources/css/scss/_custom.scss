@@ -2192,7 +2192,11 @@ footer{
 
 
 .blog-detailed-page{
-	padding-top: 150px;
+	padding-top: 100px;
+
+	@include media(max-width, 767px){
+		padding-top: 50px;
+	}
 }
 .blog-header{
 	border-bottom: 1px solid $mycolor-gray-50;
@@ -2203,6 +2207,7 @@ footer{
 		font-size: 32px;
 		font-family: $font-family-secondary;
 		color: $mycolor-gray-300;
+		letter-spacing: 8.51px;
 
 
 		span{
@@ -2214,15 +2219,21 @@ footer{
 	h6{
 		font-family: $font-family-muli;
 		font-size: 22px;
-		color: $mycolor-gray-dark;
 		font-weight: bold;
+
+		a{
+			color: $mycolor-gray-dark;
+		}
 	}
 }
 
 .blog-body{
-	p{
+	p, li{
 		font-size: 19px;
+		font-family: $font-family-muli;
 	}
+
+	li{margin-bottom: 15px;}
 	.wp-block-group{
 		figure{
 			img{
@@ -2251,6 +2262,20 @@ footer{
 			}
 
 			
+		}
+	}
+
+	.featured-blog-image figure{
+		height: 500px;
+		overflow: hidden;
+		position: relative;
+		img{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 	}
 }

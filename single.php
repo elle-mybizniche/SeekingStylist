@@ -17,6 +17,16 @@
 		    	</div>
 
 		    	<div class="blog-body">
+		    		<?php if (get_the_post_thumbnail()): ?>
+
+		    			<div class="wp-block-group featured-blog-image">
+		    				<figure class="wp-block-image size-large">
+								<?= get_the_post_thumbnail(); ?>
+							</figure>
+						</div>
+		    			
+		    		<?php endif ?>
+
 		    		<?php the_content() ?>
 		    	</div>
 
