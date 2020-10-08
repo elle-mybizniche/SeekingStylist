@@ -1852,6 +1852,7 @@ main{
 			letter-spacing: normal;
 			margin-bottom: 0;
 			color: $color-white;
+			text-transform: initial;
 		}
 		p{
 			color: #afafaf;
@@ -1873,6 +1874,7 @@ main{
 		letter-spacing: normal;
 		color: $mycolor-black;
 		line-height: 64px;
+		text-transform: initial;
 
 		@include media(max-width, 991px){
 			font-size: 40px;
