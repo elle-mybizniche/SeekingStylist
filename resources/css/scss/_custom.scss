@@ -2269,6 +2269,14 @@ footer{
 		height: 500px;
 		overflow: hidden;
 		position: relative;
+
+		@include media(max-width, 767px){
+			height: 0;
+			padding-bottom: 56.25%;
+			overflow: hidden;
+			position: relative;
+		}
+
 		img{
 			position: absolute;
 			left: 0;
