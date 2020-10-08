@@ -59,7 +59,7 @@
             <?php endif ?>
             
 
-            <div class="main-menu">
+            <div class="main-menu fixed-header">
                 <div class="logo">
                     <a href="/">
                         <img src="<?= get_template_directory_uri(); ?>/resources/img/hair-street-logo-white-menu.png" alt="<?php echo get_bloginfo(); ?>"  title="<?php echo get_bloginfo(); ?>">

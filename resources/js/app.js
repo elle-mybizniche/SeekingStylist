@@ -83,17 +83,24 @@ var gn = {
 
     menuFixedOnScroll : function(){
         var el = $('header .main-menu');
-        if (el[0]) {
-            getdistance = window.pageYOffset + el[0].getBoundingClientRect().top;
+        var el_height = el.outerHeight();
+        // if (el[0]) {
+        //     getdistance = window.pageYOffset + el[0].getBoundingClientRect().top + el_height;
 
-            $(window).scroll(function(){
-                if ($(window).scrollTop() >= getdistance) {
-                   el.addClass('fixed-header');
-                }
-                else {
-                   el.removeClass('fixed-header');
-                }
-            });
+        //     $(window).scroll(function(){
+        //         if ($(window).scrollTop() >= getdistance) {
+        //            el.addClass('fixed-header');
+        //         }
+        //         else {
+        //            el.removeClass('fixed-header');
+        //         }
+
+        //         console.log(getdistance);
+        //     });
+        // }
+
+        if ($('.search-nav')[0]) {
+            $('.search-nav').css('margin-top', el_height + 2);
         }
         
     },
