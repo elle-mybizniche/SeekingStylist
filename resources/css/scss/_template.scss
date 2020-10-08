@@ -14,20 +14,8 @@
 		}
 	}
 
-	
-
-
-	header .main-menu{
-		height: 72px;
-    	padding: 10px 0px;
-	}
-
-
-	@include media(max-width, 997px){
-		header .main-menu{
-	    	padding: 25px 0;
-		}
-	}
+	header .main-menu{height: auto;padding: 0;}
+	header .main-menu nav{height: 100%;}
 
 	@include media(max-width, 997px){
 
@@ -43,6 +31,10 @@
 			}
 		}
 		
+	}
+
+	@include media(max-width, 767px){
+		main.find-style-content{margin-top: 0;}
 	}
 }
 

@@ -226,6 +226,7 @@ function advanced_custom_search( $where, $wp_query ) {
  
     // get search expression
     $terms = $wp_query->query_vars[ 's' ];
+    $terms = preg_replace('/[^A-Za-z0-9\-]/', ' ', $terms);
 
     
     $exploded = explode( ' ', $terms );
