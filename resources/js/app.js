@@ -99,9 +99,7 @@ var gn = {
         //     });
         // }
 
-        if ($('.search-nav')[0]) {
-            $('.search-nav').css('margin-top', el_height + 2);
-        }
+        $('.search-nav, .home-banner').css('margin-top', el_height + 2);
         
     },
 
