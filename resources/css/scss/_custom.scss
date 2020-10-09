@@ -1343,13 +1343,10 @@ main{
 
 		@include media(max-width, 997px){
 			.search-stage{
-				.google-map-viewer, .stylist-card{
-					width: 100%;
-				}
-				.google-map-viewer{
-					padding-bottom: 56.25%;
-					height: 0;
-				}
+				.google-map-viewer, .stylist-card { width: 100%; }
+				.google-map-viewer { padding-bottom: 75%; height: 0; }
+				.google-map-viewer .number-of-results{ padding: 15px 20px; }
+				.google-map-viewer .number-of-results span{ margin: 0 10px; }
 			}
 		}
 
