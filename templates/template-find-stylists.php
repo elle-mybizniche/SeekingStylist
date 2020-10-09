@@ -193,16 +193,13 @@ get_header();
 
             $('#btn-current-location').click(function(){
             	navigator.geolocation.getCurrentPosition(function(position) {
-				 //  	var gPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				    
-					// googleMap.setCenter(gPosition);
 
 				    
 				    var controlAddress = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + "," + position.coords.longitude + "&location_type=ROOFTOP&result_type=street_address&key=AIzaSyDac2mOtJr_IktjUhiLZYRL_xHzxRbodRE&v";
 					$.get( controlAddress, function( data ) {
 					  	var address = data.plus_code.compound_code;
-
-					  	location = '/find-a-stylists/?search=' + address; 
+					  	var isDev = location.href.indexOf('/mbn-seeking-stylists') > -1 ? '/mbn-seeking-stylists' : '';
+					  	//location = isDev + '/find-a-stylists/?search=' + address; 
 					});
 				});
             });
