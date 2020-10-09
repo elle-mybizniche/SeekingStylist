@@ -202,7 +202,7 @@ get_header();
 					$.get( controlAddress, function( data ) {
 					  	var address = data.plus_code.compound_code;
 
-					  	location = '/mbn-seeking-stylists/find-a-stylists/?search=' + address; 
+					  	location = '/find-a-stylists/?search=' + address; 
 					});
 				});
             });
