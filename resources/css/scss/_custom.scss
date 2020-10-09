@@ -1690,6 +1690,27 @@ main{
 		}
 		
 	}
+
+	.pagination .lists, .pagination{display: flex; flex-wrap: wrap; }
+	.pagination .prev{display: none;}
+	.pagination .next-btn{margin-left: auto; }
+	.pagination .next{min-width: 258px; color: $color-white; background: $mycolor-violet; border-radius: 10px; border:0; text-align: center;}
+	.pagination a, 
+	.pagination span{font-family: $font-family-muli; font-size: 22px; padding: 20px 25px; border:1px solid $mycolor-black; display: inline-block; margin-bottom: 20px;}
+	.pagination a:hover{background-color: $mycolor-black; color: $color-white;}
+	.pagination .current{background-color: $mycolor-black;}
+	.pagination a + a, .pagination a + span, .pagination span + a{border-left: 0;}
+	.pagination .prev + a{border-left: 1px solid $mycolor-black;}
+
+	@include media(max-width, 767px){
+		.pagination .lists{justify-content: center;}
+		.pagination > *{width: 100%;}
+		.pagination .next-btn{text-align: center;}
+	}
+
+	@include media(max-width, 575px){
+		.pagination a, .pagination span{ font-size: 18px; padding: 10px 15px; }
+	}
 }
 
 .articles{
