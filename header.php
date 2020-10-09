@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="<?php echo MBN_ASSETS_URI ?>/img/favicon.ico">
-    <!-- <title><?php bloginfo('title') ?></title> -->
-
     <?php wp_head() ?>
 
-</head>
-<body <?php body_class() ?>>
 
-    <div class="preloader"></div>
+</head>
+
+<?php $controlPage = is_front_page() ? 'homepage' : 'innerpage'; ?>
+<body <?php body_class($controlPage) ?>>
 
     <div id="page">
         
         <header id="header" class="header">
             <div class="top-mobile-menu">
-                <a href="#"><img src="<?= get_template_directory_uri(); ?>/resources/img/hair-street-logo.png" alt="<?php echo get_bloginfo(); ?>"  title="<?php echo get_bloginfo(); ?>"></a>
-                <a href="javascript:;" class="hamburger-menu"><span>menu</span></a>
+                <a href="#">
+                    <img class="top-logo" src="<?= get_template_directory_uri(); ?>/resources/img/hair-street-logo.png" alt="<?php echo get_bloginfo(); ?>"  title="<?php echo get_bloginfo(); ?>">
+                </a>
+                <a href="#main-menu-control" class="hamburger-menu"><span>menu</span></a>
             </div>
             <?php if (is_front_page()): ?>
                 <?php 
@@ -42,14 +43,14 @@
                                 
                                 <h2><?= get_field('hbf_banner_heading_main') ?></h2>
                                 <p><?= get_field('hbf_banner_heading_sub_heading') ?></p>
-                                <form action="">
+                                <form action="<?= get_site_url(); ?>/find-a-stylists/">
                                     <div class="group-fields">
-                                        <input type="text" placeholder="Search by Location or by Stylist’s Name">
+                                        <input type="text" name="search" id="search" placeholder="Search by Location or by Stylist’s Name">
                                         <button type="submit" class="btn btn-black">search</button>
                                     </div>
                                 </form>
                                 <div class="info">
-                                    <p>Are You A Stylist? <a href="/sign-up"><span>Register Now</span></a><a href="/stylist-login"><span>Login</span></a></p>
+                                    <p><span>Are You A Stylist?</span> <a href="/sign-up"><span>Register Now</span></a><a href="/stylist-login"><span>Login</span></a></p>
                                 </div>
                             </div>
                         </div>
@@ -58,25 +59,28 @@
             <?php endif ?>
             
 
-            <div class="main-menu">
+            <div class="main-menu fixed-header">
                 <div class="logo">
                     <a href="/">
                         <img src="<?= get_template_directory_uri(); ?>/resources/img/hair-street-logo-white-menu.png" alt="<?php echo get_bloginfo(); ?>"  title="<?php echo get_bloginfo(); ?>">
                     </a>
                 </div>
                 <nav>
-                    <?php
-                        wp_nav_menu(
-                            array(
-                                 'container'=> false,
-                                'theme_location' => 'main-menu',
-                                'menu_id'        => 'main-menu',
-                            )
-                        );
-                    ?>
-                    <a href="javascript:;" class="hamburger-menu"><span>menu</span></a>
+                    <div id="main-menu-control">
+                        <?php
+                            wp_nav_menu(
+                                array(
+                                    'container'=> false,
+                                    'theme_location' => 'main-menu',
+                                    'menu_id'        => 'main-menu',
+                                )
+                            );
+                        ?>
+                    </div>
+                    
+                    <a href="#main-menu-control" class="hamburger-menu"><span>menu</span></a>
                 </nav>
             </div>
         </header>
 
-    </div>
+    

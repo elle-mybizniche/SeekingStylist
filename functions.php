@@ -46,6 +46,7 @@ function mbn_theme_setup(){
 
     register_nav_menus(array(
         'main-menu'   => 'Main Menu',
+        'social-media-menu'   => 'Socia Media Menu',
     ));
 
 }
@@ -85,8 +86,11 @@ function mbn_enqueue_scripts(){
     wp_enqueue_script('foundation', MBN_ASSETS_URI.'/vendor/foundation/dist/js/foundation.min.js', [], $wp_version);
 
     // Mmenu Light
-    wp_enqueue_style('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.css', [], $wp_version);
-    wp_enqueue_script('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.js', [], $wp_version);
+    // wp_enqueue_style('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.css', [], $wp_version);
+    // wp_enqueue_script('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.js', [], $wp_version);
+
+    wp_enqueue_style('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.css', [], $wp_version);
+    wp_enqueue_script('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.js', [], $wp_version);
 
     // slick
     wp_enqueue_style('slick', MBN_ASSETS_URI.'/vendor/slick/slick.css', [], $wp_version);
@@ -116,6 +120,11 @@ function mbn_enqueue_scripts(){
     // App
     wp_enqueue_style('app', MBN_ASSETS_URI.'/css/app.css', [], $wp_version);
     wp_enqueue_script('app', MBN_ASSETS_URI.'/js/app.js', [], $wp_version);
+
+    wp_register_script( 'app', 'global_script' );
+    wp_enqueue_script( 'app' );
+    $translation_array = array( 'templateUrl' => get_stylesheet_directory_uri() );
+    wp_localize_script( 'app', 'global_obj', $translation_array );
     
 
     // localize objects
@@ -199,3 +208,82 @@ require MBN_DIR_PATH . '/mbn-login/setup.php';
 //require MBN_DIR_PATH.'/includes/options/theme-options.php';
 // require MBN_DIR_PATH.'/includes/options/template-options.php';
 
+
+
+add_filter( 'wpcf7_autop_or_not', '__return_false' );
+
+
+
+
+
+function advanced_custom_search( $where, $wp_query ) {
+
+    global $wpdb;
+ 
+    if ( empty( $where )){
+        return $where;
+    }
+ 
+    // get search expression
+    $terms = $wp_query->query_vars[ 's' ];
+    $terms = preg_replace('/[^A-Za-z0-9\-]/', ' ', $terms);
+
+    
+    $exploded = explode( ' ', $terms );
+    if( $exploded === FALSE || count( $exploded ) == 0 )
+        $exploded = array( 0 => $terms );
+         
+    $where = '';
+    
+    $list_searcheable_acf = list_searcheable_acf();
+
+    foreach( $exploded as $tag ) :
+        $where .= " 
+          AND (
+            (".$wpdb->prefix."posts.post_title LIKE '%$tag%')
+            OR (".$wpdb->prefix."posts.post_content LIKE '%$tag%')
+            OR EXISTS (
+              SELECT * FROM ".$wpdb->prefix."postmeta
+                  WHERE post_id = ".$wpdb->prefix."posts.ID
+                    AND (";
+
+        foreach ($list_searcheable_acf as $searcheable_acf) :
+          if ($searcheable_acf == $list_searcheable_acf[0]):
+            $where .= " (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
+          else :
+            $where .= " OR (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
+          endif;
+        endforeach;
+
+            $where .= ")
+            )
+            OR EXISTS (
+              SELECT * FROM ".$wpdb->prefix."comments
+              WHERE comment_post_ID = ".$wpdb->prefix."posts.ID
+                AND comment_content LIKE '%$tag%'
+            )
+            OR EXISTS (
+              SELECT * FROM ".$wpdb->prefix."terms
+              INNER JOIN ".$wpdb->prefix."term_taxonomy
+                ON ".$wpdb->prefix."term_taxonomy.term_id = ".$wpdb->prefix."terms.term_id
+              INNER JOIN ".$wpdb->prefix."term_relationships
+                ON ".$wpdb->prefix."term_relationships.term_taxonomy_id = ".$wpdb->prefix."term_taxonomy.term_taxonomy_id
+              WHERE (
+                taxonomy = 'post_tag'
+                    OR taxonomy = 'category'                
+                    OR taxonomy = 'myCustomTax'
+                )
+                AND object_id = ".$wpdb->prefix."posts.ID
+                AND ".$wpdb->prefix."terms.name LIKE '%$tag%'
+            )
+        )";
+    endforeach;
+    return $where;
+}
+ 
+add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
+
+function list_searcheable_acf(){
+  $list_searcheable_acf = array('osf_name','osf_location'); // add acf field_names that you want to search through
+  return $list_searcheable_acf;
+}

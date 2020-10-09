@@ -1,4 +1,4 @@
-<?php require_once dirname(__FILE__) .  '\webapp-functions.php'; ?>
+<?php require_once dirname(__FILE__) .  '/webapp-functions.php'; ?>
 
 <div class="bordered border-pink border-content-offset-left">
 	<div class="home-gallery">

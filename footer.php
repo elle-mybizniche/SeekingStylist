@@ -23,12 +23,7 @@
         				<p>Copyright <?= date('Y') ?> SeekingStylists. All Rights Reserved.</p>
         			</div>
         			<div>
-        				<ul class="social-media">
-        					<li class="icon-facebook"><a href="#">facebook</a></li>
-        					<li class="icon-twitter"><a href="#">twitter</a></li>
-        					<li class="icon-linkedin"><a href="#">linkedin</a></li>
-        					<li class="icon-youtube"><a href="#">youtube</a></li>
-        				</ul>
+                        <?= do_shortcode( '[social_media_menu]' ); ?>
         			</div>
         			<div>
         				<p><a href="https://www.mybizniche.com/phoenix-web-design/" target="_blank">Website Design</a> by My Biz Niche.</p>

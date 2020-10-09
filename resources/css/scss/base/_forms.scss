@@ -1,12 +1,107 @@
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
   color: $mycolor-black;
 }
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
   color: $mycolor-black;
 }
-:-ms-input-placeholder { /* IE 10+ */
+:-ms-input-placeholder {
   color: $mycolor-black;
 }
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder { 
   color: $mycolor-black;
+}
+
+
+.contact-us{
+	::-webkit-input-placeholder {
+	   opacity: 0;
+
+	   @include media(max-width, 767px){
+	   		opacity: 1;
+	   		text-align: center;
+	   		color: #bcbcbc;
+	   }
+	}
+	::-moz-placeholder {
+	   opacity: 0;
+
+	   @include media(max-width, 767px){
+	   		opacity: 1;
+	   		text-align: center;
+	   		color: #bcbcbc;
+	   }
+	}
+	:-ms-input-placeholder {
+	   opacity: 0;
+
+	   @include media(max-width, 767px){
+	   		opacity: 1;
+	   		text-align: center;
+	   		color: #bcbcbc;
+	   }
+	}
+	:-moz-placeholder { 
+	   opacity: 0;
+
+	   @include media(max-width, 767px){
+	   		opacity: 1;
+	   		text-align: center;
+	   		color: #bcbcbc;
+	   }
+	}
+}
+
+
+.sign-template{
+	::-webkit-input-placeholder {
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	font-family: $font-family-primary;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+	::-moz-placeholder {
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	font-family: $font-family-primary;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+	:-ms-input-placeholder {
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	font-family: $font-family-primary;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+	:-moz-placeholder { 
+	  	color: #bcbcbc;
+	  	font-weight: bold;
+	  	font-family: $font-family-primary;
+	  	@include media(max-width, 767px){
+	  		text-align: center;
+	  	}
+	}
+}
+
+.search-nav {
+	
+	
+	@include media(max-width, 997px){
+		::-webkit-input-placeholder {
+		  text-align: center;
+		}
+		::-moz-placeholder {
+		  text-align: center;
+		}
+		:-ms-input-placeholder {
+		  text-align: center;
+		}
+		:-moz-placeholder { 
+		  text-align: center;
+		}
+	}
 }

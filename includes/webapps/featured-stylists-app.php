@@ -19,7 +19,7 @@
 				</div>
 				<div class="profile-info">
 					<h3><?php the_title(); ?></h3>
-					<p><?php the_field('osf_location') ?></p>
+					<p><?php the_field('osf_location_city') ?>, <?php the_field('osf_location_state') ?></p>
 					<div class="ratings-review">
 						<ul class="rate rate-<?= get_field('osf_rate') ?>">
 							<?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -33,7 +33,7 @@
 						<a href="#">345 reviews</a>
 					</div>
 					<div class="skills">
-						<?= get_field('osf_skills') ?>
+						<span><?= implode(", ", get_field('osf_skills')) ?></span>
 					</div>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 					</button>
 				</div>
 				<div>
-					<a href="#">
+					<a href="/find-a-stylists/">
 						VIEW MORE 
 						<svg xmlns="http://www.w3.org/2000/svg" style="width: 8px; height: 14px;"><g><g><path d="M7.757 6.257L1.722.217a.744.744 0 00-1.05 0l-.45.445a.743.743 0 000 1.05l5.072 5.072-5.078 5.078a.744.744 0 000 1.05l.445.445a.744.744 0 001.05 0l6.046-6.045a.749.749 0 000-1.054z" data-name="Path 30" fill="#d0668f"/></g></g></svg>
 					</a>
@@ -70,8 +70,16 @@
 <script>
 
 	function getSuperActive($target){
+		var activeChild = 2;
+
+		if (window.innerWidth < 1200 && window.innerWidth > 767) {
+			activeChild = 1;
+		}
+		if (window.innerWidth < 767) {
+			activeChild = 0
+		}
 		$target.find('.slick-super-active').removeClass('slick-super-active');
-		$target.find('.slick-active:eq(2)').addClass('slick-super-active');
+		$target.find('.slick-active:eq('+activeChild+')').addClass('slick-super-active');
 	}
 	$(function(){
 		var $sl = $('.stylists-lists');
@@ -97,7 +105,7 @@
 			      }
 			    },
 			    {
-			      breakpoint: 757,
+			      breakpoint: 767,
 			      settings: {
 			        slidesToShow: 1
 			      }
