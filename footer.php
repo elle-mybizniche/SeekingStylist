@@ -9,12 +9,12 @@
 	        		</a>
 
 	        		<ul class="menu-larger">
-	        			<li><a href="#">FAQS</a></li>
-	        			<li><a href="#">CONTACT US</a></li>
+	        			<li><a href="/faqs/">FAQS</a></li>
+	        			<li><a href="/contact-us/">CONTACT US</a></li>
 	        		</ul>
 	        		<ul class="menu-small">
-	        			<li><a href="#">Stylist Login</a></li>
-	        			<li><a href="#">Sign Up</a></li>
+	        			<li><a href="/stylist-login/">Stylist Login</a></li>
+	        			<li><a href="/sign-up/">Sign Up</a></li>
 	        		</ul>
         		</div>
 
