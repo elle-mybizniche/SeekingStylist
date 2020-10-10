@@ -68,20 +68,23 @@
 		            'next_text'    => sprintf( '%1$s <i></i>', __( 'Show More', 'text-domain' ) )
 		        ) );
 		    ?>
-		    <div class="lists">
-		    	<?php foreach ($gnPagination as $item): ?>
-			    	<?php if (!strpos($item, 'next')): ?>
-			    		<?= $item ?>
-			    	<?php endif ?>
-			    <?php endforeach ?>
-		    </div>
-		    <div class="next-btn">
-		    	<?php foreach ($gnPagination as $item): ?>
-			    	<?php if (strpos($item, 'next')): ?>
-			    		<?= $item ?>
-			    	<?php endif ?>
-			    <?php endforeach ?>
-		    </div>
+		    <?php if ($gnPagination): ?>
+		    	<div class="lists">
+			    	<?php foreach ($gnPagination as $item): ?>
+				    	<?php if (!strpos($item, 'next')): ?>
+				    		<?= $item ?>
+				    	<?php endif ?>
+				    <?php endforeach ?>
+			    </div>
+			    <div class="next-btn">
+			    	<?php foreach ($gnPagination as $item): ?>
+				    	<?php if (strpos($item, 'next')): ?>
+				    		<?= $item ?>
+				    	<?php endif ?>
+				    <?php endforeach ?>
+			    </div>
+		    <?php endif ?>
+		    
 		    
 		</div>
 	</div>
