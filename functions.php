@@ -2,7 +2,7 @@
 
 define('MBN_DIR_URI', get_template_directory_uri());
 define('MBN_DIR_PATH', get_template_directory());
-define('MBN_ASSETS_URI', MBN_DIR_URI.'/resources');
+define('MBN_ASSETS_URI', MBN_DIR_URI.'/assets');
 define('MBN_MAP_API_KEY',"AIzaSyDac2mOtJr_IktjUhiLZYRL_xHzxRbodRE");
 
 
@@ -83,43 +83,43 @@ function mbn_enqueue_scripts(){
     wp_enqueue_script('jquery', MBN_ASSETS_URI.'/vendor/jquery-3.4.1.min.js', [], $wp_version);
 
     // Foundation JS
-    wp_enqueue_script('foundation', MBN_ASSETS_URI.'/vendor/foundation/dist/js/foundation.min.js', [], $wp_version);
+    wp_enqueue_script('foundation', MBN_ASSETS_URI.'/vendor/foundation/dist/js/foundation.min.js', [], $wp_version, true);
 
     // Mmenu Light
     // wp_enqueue_style('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.css', [], $wp_version);
     // wp_enqueue_script('mmenu-light', MBN_ASSETS_URI.'/vendor/mmenu/mmenu-light.js', [], $wp_version);
 
     wp_enqueue_style('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.css', [], $wp_version);
-    wp_enqueue_script('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.js', [], $wp_version);
+    wp_enqueue_script('mmenu', MBN_ASSETS_URI.'/vendor/mmenu/mmenu.min.js', [], $wp_version, true);
 
     // slick
     wp_enqueue_style('slick', MBN_ASSETS_URI.'/vendor/slick/slick.css', [], $wp_version);
-    wp_enqueue_script('slick', MBN_ASSETS_URI.'/vendor/slick/slick.min.js', [], $wp_version);
+    wp_enqueue_script('slick', MBN_ASSETS_URI.'/vendor/slick/slick.min.js', [], $wp_version, true);
    
     // Masonry
     // wp_enqueue_script('masonry', MBN_ASSETS_URI.'/vendor/masonry.pkgd.min.js', [], $wp_version);
 
     // Match Height
-    wp_enqueue_script('match-height', MBN_ASSETS_URI.'/vendor/jquery.matchHeight-min.js', [], $wp_version);
+    wp_enqueue_script('match-height', MBN_ASSETS_URI.'/vendor/jquery.matchHeight-min.js', [], $wp_version, true);
 
     // Nicescroll
     // wp_enqueue_script('nicescroll', MBN_ASSETS_URI.'/vendor/jquery.nicescroll.min.js', [], $wp_version);
 
     // AOS
     wp_enqueue_style('aos', MBN_ASSETS_URI.'/vendor/aos/aos.css', [], $wp_version);
-    wp_enqueue_script('aos', MBN_ASSETS_URI.'/vendor/aos/aos.js', [], $wp_version);
+    wp_enqueue_script('aos', MBN_ASSETS_URI.'/vendor/aos/aos.js', [], $wp_version, true);
 
     // Parallax
-    wp_enqueue_script('parallax', MBN_ASSETS_URI.'/vendor/parallax.min.js', [], $wp_version);
+    wp_enqueue_script('parallax', MBN_ASSETS_URI.'/vendor/parallax.min.js', [], $wp_version, true);
 
     // Fancybox
     wp_enqueue_style('fancybox', MBN_ASSETS_URI.'/vendor/fancybox/jquery.fancybox.min.css', [], $wp_version);
-    wp_enqueue_script('fancybox', MBN_ASSETS_URI.'/vendor/fancybox/jquery.fancybox.min.js', [], $wp_version);
+    wp_enqueue_script('fancybox', MBN_ASSETS_URI.'/vendor/fancybox/jquery.fancybox.min.js', [], $wp_version, true);
 
     
     // App
     wp_enqueue_style('app', MBN_ASSETS_URI.'/css/app.css', [], $wp_version);
-    wp_enqueue_script('app', MBN_ASSETS_URI.'/js/app.js', [], $wp_version);
+    wp_enqueue_script('app', MBN_ASSETS_URI.'/js/app.js', [], $wp_version, true);
 
     wp_register_script( 'app', 'global_script' );
     wp_enqueue_script( 'app' );
