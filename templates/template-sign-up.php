@@ -61,7 +61,7 @@
                     </div>
 
                     <p class="text-upper"><a href="<?= get_site_url(); ?>/stylist-login/">Sign In</a> if you are already a member.</p>
-                    <p class="text-lower">By registering, I accept the HairStreet <a href="#">Terms of Use</a>.</p>
+                    <p class="text-lower">By registering, I accept the HairStreet <a href="/terms-of-use">Terms of Use</a>.</p>
 
 
                 </div>
